@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: "Lato", sans-serif;
+            background-color: #252525;
+        }
+
+        /* Fixed sidenav, full height */
+        .sidenav1 {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow: scroll;
+            padding-top: 20px;
+        }
+
+        .sidenav2 {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            padding-top: 20px;
+            margin-left: 1190px;
+        }
+
+        /* Style the sidenav links and the dropdown button */
+        .sidenav a,
+        .dropdown-btn {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            color: #818181;
+            display: block;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            outline: none;
+        }
+
+        /* On mouse-over */
+        .sidenav a:hover,
+        .dropdown-btn:hover {
+            color: #f1f1f1;
+        }
+
+        /* Main content */
+        .main {
+            margin-left: 300px;
+            /* Same as the width of the sidenav */
+            font-size: 20px;
+            /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        /* Add an active class to the active dropdown button */
+        .active {
+            background-color: green;
+            color: white;
+        }
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background-color: #262626;
+            padding-left: 8px;
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+        }
+
+        /* Some media queries for responsiveness */
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
+    <script src="https://unpkg.com/konva@8/konva.min.js"></script>
+    <style>
+        img {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidenav1">
+        <img src="https://i.ibb.co/JxnDbrw/pvc.png" height="40px"
+            style="padding-bottom: 4px; padding-left: 30px; padding-top: 5px;" onclick="hit('pvc')" id="pvc"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 30px; font-size: 13px; padding-top: 1px;">Param Vir Chakra
+        </p>
+        <img src="https://i.ibb.co/nmDVTHz/ac.png" height="40px"
+            style="padding-bottom: 3px; padding-left: 30px; padding-top: 5px;" onclick="hit('ac')" id="ac"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Ashok Chakra</p>
+        <img src="https://i.ibb.co/X8CJ0XS/sysm.png" height="40px"
+            style="padding-bottom: 3px; padding-left: 30px; padding-top: 5px;" onclick="hit('sysm')" id="sysm"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Sarvottam Yudh Seva
+            Medal</p>
+        <img src="https://i.ibb.co/FWJpK3D/pvsm.png" height="40px"
+            style="padding-bottom: 3px; padding-left: 30px; padding-top: 5px;" onclick="hit('pvsm')" id="pvsm"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Param Vishist Seva
+            Medal</p>
+        <img src="https://i.ibb.co/JnRGxQz/mvc.png" height="40px" style="padding-bottom: 4px; padding-left: 30px;"
+            onclick="hit('mvc')" id="mvc"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 30px; font-size: 13px; padding-top: 1px;">Maha Vir Chakra</p>
+        <img src="https://i.ibb.co/JyT23fy/kc.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('kc')" id="kc"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Kirti Chakra</p>
+        <img src="https://i.ibb.co/bNJJpBG/uysm.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('uysm')" id="uysm"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Uttam Yudh Seva
+            Medal</p>
+        <img src="https://i.ibb.co/2MdDBVM/avsm.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('avsm')" id="avsm"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Ati Vishist Seva
+            Medal</p>
+        <img src="https://i.ibb.co/LDyZfkK/vrc.png" height="40px" style="padding-bottom: 4px; padding-left: 30px;"
+            onclick="hit('vrc')" id="vrc"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 30px; font-size: 13px; padding-top: 1px;">Vir Chakra</p>
+        <img src="https://i.ibb.co/k4cBPxN/sc.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('sc')" id="sc"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Shaurya Chakra</p>
+        <img src="https://i.ibb.co/b6cDfvv/ysm.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('ysm')" id="ysm"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Yudh Seva Medal</p>
+        <img src="https://i.ibb.co/fQStMSB/vm.png" height="40px"
+            style="padding-bottom: 3px; padding-left: 30px; padding-top: 5px;" onclick="hit('vm')" id="vm"
+            location="/static/vm.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 30px; font-size: 13px;">VayuSena Medal</p>
+        <img src="https://i.ibb.co/Csfdfw6/sm.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('sm')" id="sm" location="/static/sm.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 30px; font-size: 13px;">Sena Medal</p> <img
+            src="https://i.ibb.co/42L62G1/nm.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('nm')" id="nm" location="/static/nm.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 30px; font-size: 13px;">NauSena Medal</p>
+        <img src="https://i.ibb.co/ZhGhQPB/vsm.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('vsm')" id="vsm"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 20px; font-size: 13px;">Vishist Seva Medal
+        </p>
+        <img src="https://i.ibb.co/ng5N5Sq/wound.png" height="40px"
+            style="padding-bottom: 3px; padding-left: 30px; padding-top: 5px;" onclick="hit('wound')" id="wound"
+            location="/static/wound.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">Wound Medal</p>
+        <img src="https://i.ibb.co/YcmRyBw/gsm.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('gsm')" id="gsm" location="/static/gsm.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">General Service
+            Medal</p>
+        <img src="https://i.ibb.co/BqXMKVC/samseva.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('samseva')" id="samseva" location="/static/samseva.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">Samanya Seva Medal
+        </p>
+        <img src="https://i.ibb.co/3mFm7h6/specialser.png" height="40px"
+            style="padding-bottom: 3px; padding-left: 30px;" onclick="hit('specialser')" id="specialser"
+            location="/static/specialser.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">Special Service
+            Medal</p>
+        <img src="https://i.ibb.co/G2GcFFy/opstar.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('opstar')" id="opstar" location="/static/opstar.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 35px; font-size: 13px;">Operation Vijay
+            Star Medal</p>
+        <img src="https://i.ibb.co/XJq9Z2c/siachen.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('siachen')" id="siachen" location="/static/siachen.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">Siachen Glacier
+            Medal</p>
+        <img src="https://i.ibb.co/SvXLdxD/opvijay.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('opvijay')" id="opvijay" location="/static/opvijay.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">Operation Vijay
+            Medal</p>
+        <img src="https://i.ibb.co/y6YMF3B/parakram.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('parakram')" id="parakram" location="/static/parakram.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">Operation Parakram
+            Medal</p>
+        <img src="https://i.ibb.co/1snVKGf/hard.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('hard')" id="hard" location="/static/hard.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">Sainya Seva Medal
+        </p>
+        <img src="https://i.ibb.co/M5dQxG9/highalt.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('highalt')" id="highalt" location="/static/highalt.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">High Altitude Medal
+        </p>
+        <img src="https://i.ibb.co/Pzyy6pp/videsh.png" height="40px" style="padding-bottom: 3px; padding-left: 30px;"
+            onclick="hit('videsh')" id="videsh" location="/static/videsh.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px; padding-bottom: 5px;">Videsh Seva Medal
+        </p>
+        <img src="https://i.ibb.co/SNcBCJV/ind.png" height="40px" style="padding-bottom: 5px; padding-left: 30px;"
+            onclick="hit('ind')" id="ind" location="/static/ind.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 25px; font-size: 13px;">Independence Medal
+        </p>
+        <img src="https://i.ibb.co/98MV9FP/50.png" height="40px" style="padding-bottom: 5px; padding-left: 30px;"
+            onclick="hit('50')" id="50" location="/static/50.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 25px; font-size: 13px;">50th Medal</p>
+        <img src="https://i.ibb.co/F7myCd5/25.png" height="40px" style="padding-bottom: 5px; padding-left: 30px;"
+            onclick="hit('25')" id="25" location="/static/25.png"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 25px; font-size: 13px;">25th Medal</p>
+        <img src="https://i.ibb.co/NnX6dXC/3oyrs.png" alt="3oyrs" height="40px"
+            style="padding-bottom: 5px; padding-left: 30px;" onclick="hit('3oyrs.png')" id="3oyrs.png" value="3"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">30yrs Long Service
+            Medal </p>
+        <img src="https://i.ibb.co/3vbQDNF/20yrs.png" alt="20yrs" height="40px"
+            style="padding-bottom: 5px; padding-left: 30px;" onclick="hit('yrs_20')" id="yrs_20" value="2"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">20yrs Long Service
+            Medal </p>
+        <img src="https://i.ibb.co/2n54H4c/9yrs.png" height="40px" style="padding-bottom: 5px; padding-left: 30px;"
+            onclick="hit('yrs_9')" id="yrs_9" value="1"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">9yrs Long Service
+            Medal </p>
+        <img src="https://i.ibb.co/tpdXWs6/monuc.gif" height="40px" style="padding-bottom: 5px; padding-left: 30px;"
+            onclick="hit('monuc')" id="monuc" value="1"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px;">MONUC</p>
+        <img src="https://i.ibb.co/hmcK9HD/numiss.png" height="40px" style="padding-bottom: 5px; padding-left: 30px;"
+            onclick="hit('numiss')" id="numiss" value="1"><br>
+        <p style="color:rgb(204, 204, 204); margin-left: 15px; font-size: 13px; padding-bottom: 20px;">NUMISS</p>
+    </div>
+
+    <!-- KONVA CANVAS -->
+    <div id="konva-holder"
+        style="width: 900px; margin-top:60px; height: 550px; background-color: rgb(255, 253, 253); margin-left: 370px;"
+        name="canvas"></div>
+    </div>
+    <div class="container" style="margin-left: 360px; margin-top: 20px;">
+        <button type="button" class="btn btn-primary" onclick="save_img()">Download Image</button>
+    </div>
+    <div class="container" style="color: azure; margin-left: 360px; margin-top: 10px;">All medals in the left coloumn
+        have been arranged sequentially.<br> Tap on the image of the ribbon to add it to the canvas.
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        //KONVA SETUP
+        let stage = new Konva.Stage({ height: 550, width: 900, container: 'konva-holder', x: -30 });
+        let layer = new Konva.Layer();
+        stage.add(layer);
+
+        let group1 = new Konva.Group({ x: 00, y: 10 }).moveTo(layer);
+        group1.draggable(true);
+
+        let group2 = new Konva.Group({ x: 00, y: 25 }).moveTo(layer);
+        group2.draggable(true);
+
+        let group3 = new Konva.Group({ x: 00, y: 40 }).moveTo(layer);
+        group3.draggable(true);
+
+        let group4 = new Konva.Group({ x: 00, y: 55 }).moveTo(layer);
+        group4.draggable(true);
+
+        let group5 = new Konva.Group({ x: 00, y: 70 }).moveTo(layer);
+        group5.draggable(true);
+
+        let group6 = new Konva.Group({ x: 00, y: 85 }).moveTo(layer);
+        group6.draggable(true);
+
+        //VARIABLES
+        let x_axis = 850;
+        let y_axis = 400;
+        let downloadNo = 236;
+        let padding = 0;
+        let score = 0
+
+        //KONVA FUNCTIONS
+
+        function hit(id_name) {
+
+            score = score + 1;
+            //RESET VALUES
+            if (x_axis == 130 && (y_axis == 400)) {
+                y_axis = y_axis - 75;
+                x_axis = x_axis + 720;
+            }
+            else if (x_axis == -50 && (y_axis == 325 || y_axis == 250 || y_axis == 175 || y_axis == 100 || y_axis == 25)) {
+                y_axis = y_axis - 75;
+                x_axis = x_axis + 720;
+            }
+
+            //MOVE 3 MEDALS GRP FOR 4TH MEDAL
+            if (x_axis == 130 && y_axis == 325) {
+                group2.x(180);
+            }
+            else if (x_axis == 130 && y_axis == 250) {
+                group3.x(180);
+            }
+            else if (x_axis == 130 && y_axis == 175) {
+                group4.x(180);
+            }
+            else if (x_axis == 130 && y_axis == 100) {
+                group5.x(180);
+            }
+            else if (x_axis == 130 && y_axis == 25) {
+                group6.x(180);
+            }
+
+            //ALIGN IF 3 MEDALS ON TOP
+            if (x_axis == 310 && y_axis == 325) {
+                group2.x(90);
+            }
+            else if (x_axis == 310 && y_axis == 250) {
+                group3.x(90);
+            }
+            else if (x_axis == 310 && y_axis == 175) {
+                group4.x(90);
+            }
+            else if (x_axis == 310 && y_axis == 100) {
+                group5.x(90);
+            }
+            else if (x_axis == 310 && y_axis == 25) {
+                group6.x(90);
+            }
+
+            //GET LOCATION USING ID
+            var location = document.getElementById(`${id_name}`).getAttribute("src")
+            var value_id = document.getElementById(`${id_name}`).getAttribute("value")
+            console.log(value_id)
+
+            //ADD IMAGES BASED ON GROUPS
+            if (y_axis == 400) {
+                var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                    group1.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+                });
+            }
+            else if (y_axis == 325) {
+                var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                    group2.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+                });
+            }
+            else if (y_axis == 250) {
+                var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                    group3.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+                });
+            }
+            else if (y_axis == 175) {
+                var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                    group4.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+                });
+            }
+            else if (y_axis == 100) {
+                var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                    group5.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+                });
+            }
+            else if (y_axis == 25) {
+                var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                    group6.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+                });
+            }
+
+            x_axis = x_axis - 180;
+
+            //TO GET 2 MEDALS ON TOP
+            if ((y_axis == 325 || y_axis == 250 || y_axis == 175 || y_axis == 100 || y_axis == 25 || y_axis == -50) && x_axis == 670) {
+                x_axis = x_axis - 180;
+            }
+
+            //ALERT TRIAL
+            if (score == 5) {
+                group1.getChildren().at(3).y(340).x(580);
+                group1.x(-90);
+                group2.x(-180);
+            }
+            else if (score == 9) {
+                group2.getChildren().at(3).y(265).x(400);
+                group2.x(90);
+                group3.x(-180);
+            }
+            else if (score == 13) {
+                group3.getChildren().at(3).y(190).x(400);
+                group3.x(90);
+                group4.x(-180);
+            }
+            else if (score == 17) {
+                group4.getChildren().at(3).y(115).x(400);
+                group4.x(90);
+                group5.x(-180);
+            }
+            else if (score == 21) {
+                group5.getChildren().at(3).y(40).x(400);
+                group5.x(90);
+                group6.x(-180);
+            }
+
+            //GET BACK ON TRACK
+            else if (y_axis == 325 && x_axis == 310 && score == 6) {
+                group1.getChildren().at(3).y(400).x(130);
+                group1.x(00);
+                group2.x(00);
+            }
+            else if (y_axis == 250 && x_axis == 310 && score == 10) {
+                group2.x(180);
+                group2.getChildren().at(3).y(325).x(-50);
+                group3.x(00);
+            }
+            else if (y_axis == 175 && x_axis == 310 && score == 14) {
+                group3.x(180);
+                group3.getChildren().at(3).y(250).x(-50);
+                group4.x(00);
+            }
+            else if (y_axis == 100 && x_axis == 310 && score == 18) {
+                group4.x(180);
+                group4.getChildren().at(3).y(175).x(-50);
+                group5.x(00);
+            }
+            else if (y_axis == 25 && x_axis == 310 && score == 22) {
+                group5.x(180);
+                group5.getChildren().at(3).y(100).x(-50);
+                group6.x(00);
+            }
+        };
+
+        layer.draw();
+
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        //DOWNLOAD
+        function downloadURI(uri, name) {
+            var link = document.createElement('a');
+            link.download = name;
+            link.href = uri;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            delete link;
+        }
+        function save_img() {
+            var dataURL = stage.toDataURL({ pixelRatio: 3 });
+            downloadURI(dataURL, `indianarmymedal${getRandomInt(200000)}.png`);
+        }
+    </script>
+
+</body>
+
+</html>
