@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+
+<!-- EMPTY MODAL AND SCRIPT -->
+{% block modal %}
+{% endblock modal %}
+{% block modalscr %}
+{% endblock modalscr %}
+
+{% block script %}
+<script>
+
+    //KONVA SETUP
+    let stage = new Konva.Stage({ height: 550, width: 900, container: 'konva-holder', x: -30 });
+    let layer = new Konva.Layer();
+    stage.add(layer);
+
+    let group1 = new Konva.Group({ x: 00, y: 10 }).moveTo(layer);
+    group1.draggable(true);
+
+    let group2 = new Konva.Group({ x: 00, y: 25 }).moveTo(layer);
+    group2.draggable(true);
+
+    let group3 = new Konva.Group({ x: 00, y: 40 }).moveTo(layer);
+    group3.draggable(true);
+
+    let group4 = new Konva.Group({ x: 00, y: 55 }).moveTo(layer);
+    group4.draggable(true);
+
+    let group5 = new Konva.Group({ x: 00, y: 70 }).moveTo(layer);
+    group5.draggable(true);
+
+    let group6 = new Konva.Group({ x: 00, y: 85 }).moveTo(layer);
+    group6.draggable(true);
+
+    //VARIABLES
+    let x_axis = 850;
+    let y_axis = 400;
+    let downloadNo = 236;
+    let padding = 0;
+    let score = 0
+
+    //KONVA FUNCTIONS
+
+    function hit(id_name) {
+
+        score = score + 1;
+
+        //RESETTING VALUES
+        if (x_axis == 130 && (y_axis == 400 || y_axis == 325 || y_axis == 250)) {
+            y_axis = y_axis - 75;
+            x_axis = x_axis + 720;
+        }
+        else if (x_axis == 670 && y_axis == 250) {
+            y_axis = y_axis - 75;
+            x_axis = x_axis + 170;
+        }
+        else if (x_axis == 660 && y_axis == 175) {
+            y_axis = y_axis - 75;
+            x_axis = x_axis + 170;
+        }
+
+        //GET LOCATION USING ID
+        var location = document.getElementById(`${id_name}`).getAttribute("src")
+
+        //ADD IMAGES BASED ON GROUPS
+        if (y_axis == 400) {
+            var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                group1.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+            });
+        }
+        else if (y_axis == 325) {
+            var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                group2.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+            });
+        }
+        else if (y_axis == 250) {
+            var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                group3.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+            });
+        }
+        else if (y_axis == 175) {
+            var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                group4.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+            });
+        }
+        else if (y_axis == 100) {
+            var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                group5.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+            });
+        }
+        else if (y_axis == 25) {
+            var id_name = Konva.Image.fromURL(`${location}`, function (img) {
+                group6.add(img), img.x(x_axis), img.y(y_axis), img.height(60), img.width(180), layer.batchDraw();
+            });
+        }
+
+        x_axis = x_axis - 180;
+
+        //ALL CASES
+        if (score == 5 && y_axis == 325) {
+            group1.getChildren().at(2).y(340).x(560);
+            group1.getChildren().at(3).y(340).x(380);
+            group2.x(-470);
+            group1.getChildren().at(1).x(290);
+            group1.getChildren().at(0).x(470);
+        }
+        else if (score == 6 && y_axis == 325) {
+            group2.x(-380);
+            group1.getChildren().at(3).x(470);
+            group1.getChildren().at(2).x(650);
+        }
+        else if (score == 7 && y_axis == 325) {
+            group1.getChildren().at(0).x(570);
+            group1.getChildren().at(1).x(390);
+            group1.getChildren().at(2).y(400).x(210);
+            group1.getChildren().at(3).x(660);
+            group2.x(-190);
+        }
+        else if (score == 8 && y_axis == 325) {
+            group1.getChildren().at(3).y(400).x(30);
+            group1.x(100);
+            group2.x(0);
+        }
+        else if (score == 9 && y_axis == 250) {
+            group3.x(-540);
+            group2.getChildren().at(3).y(265).x(310);
+            group2.getChildren().at(2).y(265).x(490);
+            group2.getChildren().at(1).y(265).x(670);
+            group1.getChildren().at(0).x(390);
+            group2.getChildren().at(0).x(220);
+            group1.getChildren().at(3).y(340).x(300);
+            group1.getChildren().at(2).y(340).x(480);
+            group1.getChildren().at(1).x(210);
+        }
+        else if (score == 10 && y_axis == 175) {
+            group1.getChildren().at(2).x(570);
+            group1.getChildren().at(3).x(390);
+            group2.getChildren().at(0).x(310);
+            group2.getChildren().at(1).y(325).x(130);
+            group2.getChildren().at(2).x(670);
+            group2.getChildren().at(3).x(490);
+            group3.x(-360);
+            group4.x(-530).y(115);
+        }
+        else if (score == 11 && y_axis == 100) {
+            group1.getChildren().at(2).y(400).x(30);
+            group1.x(190);
+            group1.getChildren().at(3).x(480);
+            group2.getChildren().at(0).x(490);
+            group2.getChildren().at(1).x(310);
+            group2.getChildren().at(2).y(325).x(130);
+            group2.getChildren().at(3).x(670);
+            group3.x(-180);
+            group4.x(-350);
+            group5.y(190).x(-520);
+        }
+        else if (score == 12 && y_axis == 100) {
+            group1.getChildren().at(3).y(400).x(-150);
+            group1.x(280);
+            group2.x(180);
+            group2.getChildren().at(3).y(325).x(-50);
+            group3.x(0);
+            group4.x(-170);
+            group5.x(-340);
+        }
+        else if (score == 13 && y_axis == 100) {
+            group3.getChildren().at(0).y(250).x(130);
+            group4.getChildren().at(0).y(115).x(840);
+            group5.y(130).x(-160);
+            group2.y(-35).x(360);
+            group2.getChildren().at(0).y(385).x(-140);
+            group1.getChildren().at(3).y(340).x(120);
+            group1.getChildren().at(2).y(340).x(300);
+            group1.getChildren().at(1).x(30);
+            group1.getChildren().at(0).x(210);
+        }
+        else if (score == 14 && y_axis == 100) {
+            group1.getChildren().at(2).x(390);
+            group1.getChildren().at(3).x(210);
+            group2.getChildren().at(0).x(-50);
+            group2.getChildren().at(1).y(385).x(-230);
+            group2.getChildren().at(2).x(310);
+            group2.getChildren().at(3).x(130);
+            group3.x(180);
+            group4.y(175).x(-710);
+            group5.x(20);
+
+        }
+        else if (score == 15 && y_axis == 100) {
+            group1.x(370);
+            group1.getChildren().at(2).y(400).x(-150);
+            group1.getChildren().at(3).x(300);
+            group2.getChildren().at(0).x(130);
+            group2.getChildren().at(1).x(-50);
+            group2.getChildren().at(2).y(385).x(-230);
+            group2.getChildren().at(3).x(310);
+            group3.x(360);
+            group4.x(-530);
+            group5.x(200);
+            group5.getChildren().at(0).y(160).x(-70);
+
+        }
+        else if (score == 16 && y_axis == 100) {
+            group1.x(460);
+            group1.getChildren().at(3).y(400).x(-330);
+            group2.x(540);
+            group2.getChildren().at(3).y(385).x(-410);
+            group3.x(540);
+            group4.x(-350);
+            group5.x(380);
+            group5.getChildren().at(1).y(160).x(-250);
+
+        }
+        else if (score == 17 && y_axis == 100) {
+            group5.y(70);
+            group5.getChildren().at(0).x(110);
+            group5.getChildren().at(1).x(-70);
+            group5.getChildren().at(2).y(160).x(-250);
+            group5.getChildren().at(3).x(290);
+            group5.getChildren().at(4).x(110);
+            group5.getChildren().at(5).x(-70);
+            group4.y(115).x(-170);
+            group3.x(0);
+            group2.y(-95).x(720);
+            group2.getChildren().at(0).y(445).x(-500);
+            group1.x(280);
+            group1.getChildren().at(2).y(340).x(120);
+            group1.getChildren().at(3).y(340).x(300);
+            group5.getChildren().at(6).x(-70);
+
+        }
+
+
+    }
+
+    layer.draw();
+
+    function getRandomInt(max) {
+        return Math.floor(Math.random() * max);
+    }
+
+    //DOWNLOAD
+    function downloadURI(uri, name) {
+        var link = document.createElement('a');
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
+    }
+    function save_img() {
+        var dataURL = stage.toDataURL({ pixelRatio: 3 });
+        downloadURI(dataURL, `indianarmymedal${getRandomInt(200000)}.png`);
+    }
+</script>
+{% endblock script %}

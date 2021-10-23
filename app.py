@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
-from random import randint
 
 
 app = Flask(__name__,static_url_path='/staticeoifeufy94y9348ty8349tynv98wryyxm230ry03vwefowiefjwio',)
@@ -14,25 +13,25 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 #ADMIN
 db = SQLAlchemy(app)
-admin = Admin(app, url="/admin123")
-
+admin = Admin(app, url="/immols123")
 
 
 # HOME PAGE
 @app.route("/",methods=['GET','POST'])
 def home_page():
+    return render_template('base.html')
 
+@app.route("/army",methods=['GET','POST'])
+def army():
+    return render_template('army.html')
 
-    if request.method=='POST':
-        id = ''.join(["{}".format(randint(0, 9)) for num in range(0, 10)])
-        name=request.form.get('name')
-        add=request.form.get('add1')
-        commit= purchases(id=id, name=name, address=add,)
-        db.session.add(commit)
-        db.session.commit()
-        return render_template('trial2.html',id=id)
+@app.route("/airforce",methods=['GET','POST'])
+def airforce():
+    return render_template('army.html')
 
-    return render_template('trial4.html')
+@app.route("/navy",methods=['GET','POST'])
+def navy():
+    return render_template('navy.html')
 
 
 # DATABASE
